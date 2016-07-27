@@ -11,17 +11,44 @@
       :host {
         display: inline-block;
       }
+      iron-icon {
+        /* Since iron-iron uses SVG, we use SVG-specific properties */
+        fill: var(--icon-toggle-color, rgba(0, 0, 0, 0));
+        stroke: var(--icon-toggle-outline-color, currentcolor);
+      }
+      :host([pressed]) iron-icon {
+        /* Remember ^^ those attribute selectors? */
+        fill: var(--icon-toggle-pressed-color, currentcolor);
+      }
     </style>
 
     <!-- local DOM goes here -->
-    <span>Not much here yet.</span>
+    <iron-icon icon="[[toggleIcon]]">
+    </iron-icon>
   </template>
 
   <script>
   Polymer({
     is: 'icon-toggle',
+
+    properties: {
+      toggleIcon: String,
+      pressed: {
+        type: Boolean,
+        value: false, // set sane defaults
+        notify: true,
+        reflectToAttribute: true
+      }
+    },
+    listeners: {
+      'tap': 'toggle' //listen for the tap event, and invoke toggle
+    },
+    toggle: function() {
+      // I'm sure I like Google's tendency to use strings for all of their
+      // libraries' look-up (see AngularJS and Angular 2). But whatever
+      this.pressed = !this.pressed;
+    }
   });
   </script>
 
 </dom-module>
-

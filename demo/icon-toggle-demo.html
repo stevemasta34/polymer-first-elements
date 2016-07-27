@@ -8,23 +8,26 @@
     <style>
       :host {
         font-family: sans-serif;
+        --icon-toggle-color: blue;
+        --icon-toggle-outline-color: grey;
+        --icon-toggle-pressed-color: red;
       };
     </style>
-  
+
     <h3>Statically-configured icon-toggles</h3>
-    
+
     <icon-toggle toggle-icon="star"></icon-toggle>
     <icon-toggle toggle-icon="star" pressed></icon-toggle>
-    
+
     <h3>Data-bound icon-toggle</h3>
 
     <!-- use a computed binding to generate the message -->
     <div><span>[[message(isFav)]]</span></div>
 
-    <!-- curly brackets ({{}}} allow two-way binding --> 
+    <!-- curly brackets ({{}}} allow two-way binding -->
     <icon-toggle toggle-icon="favorite" pressed="{{isFav}}"></icon-toggle>
   </template>
-  
+
   <script>
     Polymer({
       is: "icon-toggle-demo",
